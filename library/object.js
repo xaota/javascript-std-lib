@@ -95,4 +95,20 @@
     static into(item, object) {
       return item in object;
     }
+
+  /** Вернет true, если переданное значение (value) является объектом @static
+    * @param {any} value проверяемое значение
+    * @return {boolean} true, если параметр является объектом
+    */
+    static is(value) {
+      return value instanceof Object && Object.getPrototypeOf(value) === Object.prototype;
+    }
+
+  /** Проверка на пустоту объекта @todo @static
+    * @param {object} object проверяемый объект
+    * @return {boolean} true, если нет ключей
+    */
+    static empty(object) {
+      return Object.keys(object).length === 0;
+    }
   }
