@@ -28,7 +28,7 @@ export default class Num {
     return Math.round(count / from * a) / b;
   }
 
-/** Округление числа до заданной точности
+/** Округление числа до заданной точности @static
   * @param {number} num исходное число
   * @param {number} precision количество знаков после запятой
   * @return {number} число с округлением
@@ -69,7 +69,7 @@ export default class Num {
       : Num.sum(array) / array.length;
   }
 
-/** Персентиль от элементов массива (0..1)
+/** Персентиль от элементов массива (0..1) @static
   * @param {array} array числовой массив
   * @param {percent} percent срез
   * @return {number} персентиль числа
@@ -118,7 +118,7 @@ export default class Num {
       : result;
   }
 
-/** Фиксирование числа в диапазоне
+/** Фиксирование числа в диапазоне @static
   * @param {number} value число
   * @param {number} min миниимальное значение
   * @param {number} max максимальное значение

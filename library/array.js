@@ -20,6 +20,32 @@ export default class Arr {
     return Num.rand(0, array.length);
   }
 
+/** Массив с перемешанными элементами @static
+  * @param {array} array массив
+  * @return {array} новый массив
+  */
+  static shuffle(array) {
+    const length = array.length;
+    const result = array.slice(); // !
+    for (let i = 0; i < length; ++i) {
+      const index   = Num.rand(i, array.length);
+      Arr.swap(result, i, index);
+    }
+    return result;
+  }
+
+/** Обмен местами двух элементов массива @static @void
+  * @param {array} array массив
+  * @param {number} a индекс первого элемента
+  * @param {number} b индекс второго элемента
+  */
+  static swap(array, a, b) {
+    const el = array[a];
+    array[a] = array[b];
+    array[b] = el;
+    // return array
+  }
+
 /** Уникальные элементы массива @static
   * @param {array} array исходный массив
   * @return {array} только уникальные элементы
