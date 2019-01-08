@@ -1,7 +1,7 @@
 /** @section @exports */
 /** */
   export default class Fn {
-    /** Оператор функционального матчинга @static
+  /** Оператор функционального матчинга @static
     * @param {any} args матчевые переменные
     * @return {function} @closure
     * @usage matches(args)(...cases)(), cases = array of [function:boolean, function:handler]
@@ -18,7 +18,7 @@
       }
     }
 
-  /** Повтор функции через равные промежутки времени (после окончания)
+  /** Повтор функции через равные промежутки времени (после окончания) @static
     * @param {Function} fn "зацикливаемая" функция
     * @param {number} delay время между запусками (в мс)
     * @param {object} context контекст запуска
@@ -47,5 +47,24 @@
         if (flag === true) return;
         timer = setTimeout(f, delay);
       }
+    }
+
+  /** Таймаут-промис @static
+    * @param {number} delay время ожидания начала выполнения функции в милисекундах
+    * @param {function} handler функция
+    * @param {array} args список передаваемых параметров
+    * @return {Promise} результат выполнения
+    */
+    static timeout(delay = 0, handler = () => {}, ...args) {
+      return new Promise((resolve, reject) => {
+        setTimeout(async (...args) => {
+          try {
+            const result = await handler(...args);
+            resolve(result);
+          } catch (error) {
+            reject(error);
+          }
+        }, delay, ...args);
+      });
     }
   }
