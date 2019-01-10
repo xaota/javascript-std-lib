@@ -87,6 +87,29 @@
       return Object.assign(result, ...Object.keys(source).map(key => ({[key]: Obj.deep(source[key], hash)})));
     }
 
+  /** Глубокое слияние объектов в один @static @immutable
+    * @param {...object} objects - Objects to merge
+    * @return {object} New object with merged key/values
+    */
+    static merge(...objects) {
+      return objects.reduce((prev, obj) => {
+        Object.keys(obj).forEach(key => {
+          const pVal = prev[key];
+          const oVal = obj[key];
+
+          if (Array.isArray(pVal) && Array.isArray(oVal)) {
+            prev[key] = pVal.concat(...oVal);
+          } else if (Obj.is(pVal) && Obj.is(oVal)) {
+            prev[key] = Obj.merge(pVal, oVal);
+          } else {
+            prev[key] = oVal;
+          }
+        });
+
+        return prev;
+      }, {});
+    }
+
   /** Оператор наличия @static
     * @param {string} item проверяемый элемент
     * @param {object} object проверяемый объект
