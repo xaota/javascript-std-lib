@@ -67,4 +67,12 @@
         }, delay, ...args);
       });
     }
+
+  /** Задержка выполнения / sleep @async @sattic
+    * @param {number} duration продолжительность задержки
+    * @return {Promise} await до возврата управления
+    */
+    static sleep(duration) {
+      return new Promise(resolve => setTimeout(resolve, duration));
+    }
   }
