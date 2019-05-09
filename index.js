@@ -4,3 +4,5 @@ export {default as Str}    from './library/string.js';
 export {default as Obj}    from './library/object.js';
 export {default as Fn}     from './library/functions.js';
 export {default as Moment} from './library/moment.js';
+
+export {default as uuid}   from './library/uuid.js';
