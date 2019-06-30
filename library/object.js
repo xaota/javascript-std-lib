@@ -56,6 +56,44 @@
       return result;
     }
 
+  /** Список всех путей до листьев в объекте @static @reqursive
+    * @param {object} object исходный объект
+    * @param {string} path стартовый путь
+    * @return {array} список путей {...string}
+    */
+    static leafsPaths(object, path) {
+      return Obj
+        .paths(object, path)
+        .filter((e, i, l) => !l.slice(i + 1).find(x => x.indexOf(e) === 0));
+    }
+
+  /** Все конечные узлы / leafs @static
+    * @param {object} object исходный объект
+    * @param {string} path стартовый путь
+    * @return {any} список элементов
+    */
+    static leafs(object, path) {
+      return Obj
+        .leafsPaths(object, path)
+        .map(e => Obj.get(object, e));
+    }
+
+  /** Изменение листьев объекта @static @reqursive
+    * @param {object} object исходный объект
+    * @param {function} migration функция обновления листа
+    * @param {string} path стартовый путь
+    * @return {array} список путей {...string}
+    */
+    static leafsUpdate(object, migration, path) {
+      const paths = Obj.leafsPaths(object, path);
+      paths.forEach(path => {
+        const origin = Obj.get(object, path);
+        const value  = migration(origin, path);
+        Obj.set(object, path, value);
+      });
+      return object;
+    }
+
   /** Список всех методов в прототипе объекта, исключая конструктор @static
     * @param {object} object исходный объект
     * @return {array} список названий методов {...string}

@@ -1,12 +1,10 @@
 {
   "name": "javascript-std-lib",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "type": "module",
-  "description": "популярные операции над стандартными типами данных",
+  "description": "Популярные операции над стандартными типами данных",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xaota/javascript-std-lib.git"
@@ -15,7 +13,13 @@
     "javascript",
     "js",
     "stdlib",
-    "primitives"
+    "primitives",
+    "array",
+    "number",
+    "string",
+    "function",
+    "object",
+    "date time"
   ],
   "author": "https://github.com/xaota",
   "license": "Unlicense",

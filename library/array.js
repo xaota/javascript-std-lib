@@ -176,4 +176,14 @@ export default class Arr {
   static concatMap(array, fn) {
     return [].concat(...array.map(fn));
   }
+
+/** Применяет мутацию только для отобранных элементов / condition @static
+  * @param {array}       array исходный массив
+  * @param {function}   filter фильтрация элементов
+  * @param {function} mutation мутация элементов
+  * @return {array} итоговый массив
+  */
+  static condition(array, filter, mutation) {
+    return array.map((e, i) => filter(e, i, array) ? mutation(e, i, array) : e);
+  }
 }
