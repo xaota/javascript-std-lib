@@ -112,7 +112,7 @@
     */
     static arrays(object, key, value) {
       if (!Obj.into(key, object)) object[key] = [];
-      if (!Array.is(object[key])) object[key] = [object[key]];
+      if (!Array.isArray(object[key])) object[key] = [object[key]];
       object[key].push(value);
       return object;
     }
