@@ -157,13 +157,12 @@ export default class Arr {
     return groups.map(g => array.filter(i => iteratee(i, g)));
   }
 
-/** Декартово произведение элементов массива массивов @static
+/** Декартово произведение элементов массива массивов / cartesianProduct @static
   * @param {array} array исходный массив массивов
   * @return {array} массив всевозможных комбинаций
   */
   static cartesianProduct(array = []) {
-    array.forEach((e, i) => { if (!Array.isArray(e)) array[i] = [e]; });
-    return array
+    return Arr.condition(array.slice(), e => !Array.isArray(e), e => [e])
       .reduce((a, b) => a.map(x => b.map(y => x.concat(y))).reduce((r, e) => r.concat(e), []), [[]]);
   }
 

@@ -104,6 +104,19 @@
         .filter(m => m !== 'constructor');
     }
 
+  /** Создаёт в объекте ключ-массив (object[key] = [..., value]) / arrays @static
+    * @param {object} object исходный объект
+    * @param {string} key ключ
+    * @param {any} value значение
+    * @return {object} object
+    */
+    static arrays(object, key, value) {
+      if (!Obj.into(key, object)) object[key] = [];
+      if (!Array.is(object[key])) object[key] = [object[key]];
+      object[key].push(value);
+      return object;
+    }
+
   /** Глубокое копирование объекта @static
     * @param {object} source источник
     * @param {WeakMap} hash хранилище копий
