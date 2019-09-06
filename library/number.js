@@ -30,10 +30,10 @@ export default class Num {
 
 /** Округление числа до заданной точности @static
   * @param {number} num исходное число
-  * @param {number} precision количество знаков после запятой
+  * @param {number} [precision=2] количество знаков после запятой
   * @return {number} число с округлением
   */
-  static trunc(num, precision) {
+  static trunc(num, precision = 2) {
     const x = Math.pow(10, precision);
     return ~~(num * x) / x;
   }

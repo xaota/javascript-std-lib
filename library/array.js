@@ -34,7 +34,7 @@ export default class Arr {
     return result;
   }
 
-/** Обмен местами двух элементов массива @static @void
+/** Обмен местами двух элементов массива @static @void @mutable
   * @param {array} array массив
   * @param {number} a индекс первого элемента
   * @param {number} b индекс второго элемента
@@ -120,6 +120,7 @@ export default class Arr {
 /** Плоский список из списка списков @static
   * @param {array} array массив массивов
   * @return {array} итоговый "плоский" массив
+  * @deprecated {Array.prototype.flat}
   */
   static flatten(array = []) {
     return array.reduce((result, item) => result.concat(Array.isArray(item) ? Arr.flatten(item) : item), []);
@@ -142,9 +143,18 @@ export default class Arr {
   static without(array, item) {
     return (item = array.indexOf(item), item === -1)
       ? array.slice()
-      : array
-        .slice(0, item)
-        .concat(array.slice(item + 1));
+      : Arr.withoutIndex(array, item);
+  }
+
+/** Новый массив без одного элемента @static
+  * @param {array} array исходный массив
+  * @param {number} index исключаемый элемент
+  * @return {array} массив без элемента с индексом index
+  */
+  static withoutIndex(array, index) {
+    return array
+      .slice(0, index)
+      .concat(array.slice(index + 1));
   }
 
 /** Группировка элементов массива по другому массиву / groups @static
