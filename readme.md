@@ -10,12 +10,17 @@ $ npm install javascript-std-lib
 import {Num, Arr, Str, Obj, Fn, Moment} 'javascript-std-lib'; // all static classes
 ...
 ```
+---
 
-### Классы
-#### `Num` - методы для работы с числами
+## Классы
+### `Num` - методы для работы с числами
 ```javascript
+import Num from 'javascript-std-lib/library/number.js';
+
+//
+
 Num.rand(min, max)                             // rand integer from [min, max)
-Num.percent(count, from = 100, precision = 2)
+Num.percent(count, from = 100, precision = 2)  // Num.percent(3, 10) -> 0.3
 Num.trunc(num, precision = 2)
 Num.pad(5, length = 2, char = '0')             // "05"
 Num.sum([1, 2, 3])                             // 6
@@ -26,8 +31,9 @@ Num.median(array = [])
 Num.mode(array = [])
 Num.clamp(value, min = 0, max = 1)
 ```
+---
 
-#### `Arr` - методы для работы с массивами
+### `Arr` - методы для работы с массивами
 ```javascript
 import Arr from 'javascript-std-lib/library/array.js';
 
@@ -66,9 +72,14 @@ Arr.concatMap(array, fn)
 
 Arr.condition([1, 2, 3], e => e % 2 === 0, e => e * 10) // [1, 20, 3]
 ```
+---
 
-#### `Str` - методы для работы со строками
+### `Str` - методы для работы со строками
 ```javascript
+import Str from 'javascript-std-lib/library/string.js';
+
+//
+
 Str.is(value) // true, если переданый параметр - строка (без наследования от String @todo)
 Str.fill(length, pattern)
 Str.random(length, space = 'abc...zyz1...90ABC...XYZ')
@@ -77,9 +88,14 @@ Str.format(string, ...args)
 
 Str.cleanRU(string) // !
 ```
+---
 
-#### `Obj` - методы для работы с объектами
+### `Obj` - методы для работы с объектами
 ```javascript
+import Obj from 'javascript-std-lib/library/object.js';
+
+//
+
 Obj.is(value)          // true, если переданый параметр - простой объект
 Obj.empty(object)      // true, если переданый параметр - пустой объект (без наследования)
 Obj.into(item, object) // boolean, -> item in object

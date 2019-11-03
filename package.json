@@ -1,6 +1,6 @@
 {
   "name": "javascript-std-lib",
-  "version": "1.9.1",
+  "version": "1.10.2",
   "type": "module",
   "description": "Популярные операции над стандартными типами данных",
   "main": "index.js",
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/xaota/javascript-std-lib#readme",
   "devDependencies": {
-    "babel-eslint": "^10.0.1"
+    "eslint": "^6.3.0",
+    "babel-eslint": "^10.0.2"
   }
 }

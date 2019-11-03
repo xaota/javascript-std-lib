@@ -14,7 +14,7 @@
       return typeof value === 'string' || value instanceof String;
     }
 
-  /** Предварительная обработка (очистка строки) русского текста @static
+  /** Предварительная обработка (очистка строки) русского текста @static @RU
     * @param {string} string исходная строка
     * @return {string} очищенная строка
     */
@@ -26,6 +26,20 @@
         .replace(/[%$₽€]/g, match => ' ' + match + ' ')
         .replace(/\s+/g, ' ')
         .trim();
+    }
+
+  /** Русская форма числительного / pluralize @static @RU
+    * @param {number} count Количество перечисляемых объектов
+    * @param {string} one числительное при одном объекте
+    * @param {string} two числительное при двух объектах
+    * @param {string} five числительное при пяти объектах
+    * @sample pluralize(32, ...['стол', 'стола', 'столов']) -> 'стола'
+    */
+    static pluralizeRU(count, one, two, five) {
+      let n = Math.abs(count) % 100, n1 = n % 10;
+      if ((n > 20 || n < 10) && n1 > 1 && n1 < 5) return two;
+      if (n !== 11 && n1 === 1) return one;
+      return five;
     }
 
   /** Создание строки определенной длины из паттерна @static

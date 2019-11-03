@@ -5,12 +5,12 @@
 /** @section @exports */
 /** number functions */
 export default class Num {
-/** Возвращает случайное целое между min и max - 1 @static
-  * @param {number} min нижняя граница промежутка (входит в диапазон)
-  * @param {number} max верхняя граница промежутка (не входит в диапазон)
+/** Возвращает случайное целое в диапазоне [min, max - 1] @static
+  * @param {number} min нижняя граница промежутка
+  * @param {number} max верхняя граница промежутка
   * @return {number} случайное число
   */
-  static rand(min, max) { //случайные целые числа
+  static rand(min, max) {
     if (min == undefined) return Num.rand(2) == 1;
     if (max == undefined) return min > 0 ? Num.rand(0, min) : Num.rand(min, 0);
     return Math.floor(Math.random() * (max - min)) + min;

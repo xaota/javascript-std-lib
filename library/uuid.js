@@ -1,9 +1,8 @@
 /** Генерация UUID @unsafe
-  * @param {string} prefix префикс, если нужен
   * @return {string} uuid
   */
-  export default function uuid(prefix = '') {
-    return prefix + s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  export default function uuid() {
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
 // #region [Private]
