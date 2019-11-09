@@ -1,5 +1,6 @@
 /** @section @imports */
   import Num from './number.js';
+  import Obj from './object.js';
 
 /** @section @exports */
 /** array functions */
@@ -52,6 +53,21 @@ export default class Arr {
   */
   static uniq(array = []) {
     return Array.from(new Set(array));
+  }
+
+/** Уникальные элементы массива объектов (по полю) / uniqObjects [filter] @static
+  * @param {array} array исходный массив
+  * @param {string} path путь до поля в каждом элементе массива
+  * @param {string} split разделитель вложенности ключей в пути
+  * @sample ([{a: 1, b: 1}, {a: 2, b: 2}, {a: 1, b: 3}], 'a') -> [{a: 1, b: 1}, {a: 2, b:2}]
+  * @return {array} только уникальные элементы (по значению этого поля)
+  */
+  static uniqObjects(array, path, split = '/') {
+    const cache = array.map(item => Obj.get(item, path, split));
+    return array.filter((e, index) => {
+      const item = Obj.get(e, path, split);
+      return cache.indexOf(item) === index;
+    });
   }
 
 /** Обертка для редуцирующей конкатенации @reduce @static

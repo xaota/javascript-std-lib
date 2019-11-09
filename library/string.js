@@ -20,6 +20,7 @@
     */
     static cleanRU(string) {
       return (string || '').toLowerCase()
+        .replace(/й/g, 'й') // странная й из *.pdf-файлов (и + символ краткости)
         .replace(/ё/g, 'е')
         // .replace(/й/g, 'и')
         .replace(/[^а-яa-z0-9%$₽€]/g, ' ')

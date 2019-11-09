@@ -46,6 +46,7 @@ Arr.shuffle([1, 2, 3, 4, 5, 6, 7])         // допустим, [7, 3, 6, 1, 2, 
 Arr.swap([1, 2, 3, 4, 5, 6, 7], 5, 3)      // [1, 2, 3, 6, 5, 4, 7] !!!NOTE @mutable
 
 Arr.uniq([1, 1, 1, 2, 3, 3, 4])            // -> [1, 2, 3, 4]
+Arr.uniqObjects(array, path, split = '/')  // Уникальные элементы массива объектов (по полю)
 
 Arr.concat(item => item)                   // (list, item) => list.concat(handler(item)) // для .reduce
 
