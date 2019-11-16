@@ -72,6 +72,7 @@ Arr.withoutIndex([1, 2, 3, 4, 5], 2)       // [1, 2, 4, 5]
 Arr.concatMap(array, fn)
 
 Arr.condition([1, 2, 3], e => e % 2 === 0, e => e * 10) // [1, 20, 3]
+Arr.filterIndex([1, 2, 3, 4], e => e % 2) // [2, 4]
 ```
 ---
 

@@ -70,6 +70,17 @@ export default class Arr {
     });
   }
 
+/** Список элементов массива, удовлетворяющих условю
+  * @param {array} array исходный массив
+  * @param {Function} condition функция-условие
+  * @return {array} массив индексов
+  */
+  static filterIndex(array, condition) {
+    const result = [];
+    for (const i = 0; i < array.length; ++i) if (condition(e, i, array)) result.push(i);
+    return result;
+  }
+
 /** Обертка для редуцирующей конкатенации @reduce @static
   * @param {static} handler? преобразование элемента при конкатенации
   * @return {array} list.concat(handler(item))
