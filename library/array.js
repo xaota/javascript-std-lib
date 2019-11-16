@@ -77,7 +77,7 @@ export default class Arr {
   */
   static filterIndex(array, condition) {
     const result = [];
-    for (const i = 0; i < array.length; ++i) if (condition(e, i, array)) result.push(i);
+    for (let index = 0; index < array.length; ++index) if (condition(array[index], index, array)) result.push(index);
     return result;
   }
 
