@@ -1,6 +1,7 @@
 .eslintrc
 .babelrc
 .vscode/
+.github/
 node_modules/
 
 .history/
