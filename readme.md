@@ -6,6 +6,17 @@ $ npm install javascript-std-lib
 ```
 
 ## Использование
+```html
+<script type="importmap">
+{
+  "imports": {
+    "javascript-std-lib": "/javascript-std-lib/index.js",
+    "javascript-std-lib/": "/javascript-std-lib/library/"
+  }
+}
+</script>
+```
+
 ```javascript
 import {Num, Arr, Str, Obj, Fn, Moment} 'javascript-std-lib'; // all static classes
 ...
@@ -15,7 +26,7 @@ import {Num, Arr, Str, Obj, Fn, Moment} 'javascript-std-lib'; // all static clas
 ## Классы
 ### `Num` - методы для работы с числами
 ```javascript
-import Num from 'javascript-std-lib/library/number.js';
+import Num from 'javascript-std-lib/number.js';
 
 //
 
@@ -35,7 +46,7 @@ Num.clamp(value, min = 0, max = 1)
 
 ### `Arr` - методы для работы с массивами
 ```javascript
-import Arr from 'javascript-std-lib/library/array.js';
+import Arr from 'javascript-std-lib/array.js';
 
 //
 
@@ -78,7 +89,7 @@ Arr.filterIndex([1, 2, 3, 4], e => e % 2) // [2, 4]
 
 ### `Str` - методы для работы со строками
 ```javascript
-import Str from 'javascript-std-lib/library/string.js';
+import Str from 'javascript-std-lib/string.js';
 
 //
 
@@ -94,7 +105,7 @@ Str.cleanRU(string) // !
 
 ### `Obj` - методы для работы с объектами
 ```javascript
-import Obj from 'javascript-std-lib/library/object.js';
+import Obj from 'javascript-std-lib/object.js';
 
 //
 

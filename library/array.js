@@ -82,8 +82,8 @@ export default class Arr {
   }
 
 /** Обертка для редуцирующей конкатенации @reduce @static
-  * @param {static} handler? преобразование элемента при конкатенации
-  * @return {array} list.concat(handler(item))
+  * @param {Function} handler? преобразование элемента при конкатенации
+  * @return {Function} list.concat(handler(item)) -> {Array}
   */
   static concat(handler = item => item) {
     return (list, item) => list.concat(handler(item));
@@ -221,5 +221,19 @@ export default class Arr {
   */
   static condition(array, filter, mutation) {
     return array.map((e, i) => filter(e, i, array) ? mutation(e, i, array) : e);
+  }
+
+/** Группировка элементов массива по количеству / groupBy @static
+  * @param {Array} array исходный массив
+  * @return {Array} массив групп
+  * @example [a,b,c,a,b,d,a] -> [[a,3], [b, 2], [c, 1], [d, 1]]
+  */
+  static groupBy(array) {
+    const temp = {};
+    array.forEach(e => {
+      if (!(e in temp)) temp[e] = 0;
+      ++temp[e];
+    });
+    return Object.entries(temp);
   }
 }
