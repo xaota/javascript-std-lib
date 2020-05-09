@@ -30,14 +30,15 @@
     }
 
   /** Русская форма числительного / pluralize @static @RU
-    * @param {number} count Количество перечисляемых объектов
+    * @param {number} count количество перечисляемых объектов
     * @param {string} one числительное при одном объекте
     * @param {string} two числительное при двух объектах
     * @param {string} five числительное при пяти объектах
     * @sample pluralize(32, ...['стол', 'стола', 'столов']) -> 'стола'
+    * @return {string} форма числительного в зависимости от значения количества
     */
     static pluralizeRU(count, one, two, five) {
-      let n = Math.abs(count) % 100, n1 = n % 10;
+      const n = Math.abs(count) % 100, n1 = n % 10;
       if ((n > 20 || n < 10) && n1 > 1 && n1 < 5) return two;
       if (n !== 11 && n1 === 1) return one;
       return five;
