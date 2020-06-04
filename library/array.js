@@ -144,15 +144,6 @@ export default class Arr {
     return Arr.uniq([...left, ...right]);
   }
 
-/** Плоский список из списка списков @static
-  * @param {array} array массив массивов
-  * @return {array} итоговый "плоский" массив
-  * @deprecated {Array.prototype.flat}
-  */
-  static flatten(array = []) {
-    return array.reduce((result, item) => result.concat(Array.isArray(item) ? Arr.flatten(item) : item), []);
-  }
-
 /** Масссив определенной длины с одинаковыми значениями @static
   * @param {number} length желаемая длина
   * @param {any} value желаемое значение
@@ -160,6 +151,18 @@ export default class Arr {
   */
   static fill(length, value) {
     return Array.from({length}, typeof value === "function" ? value : (_, i) => value);
+  }
+
+/** Итерация по диапазону / range @static @generator
+  * @param {number} from начальное значение
+  * @param {number} to конечное значение
+  * @param {number} [step=1] шаг
+  * @yield {number} текущее значение интерации
+  */
+  static *range(from, to, step = 1){
+    for (let val = from; val < to; val += step){
+      yield val;
+    }
   }
 
 /** Новый массив без одного элемента @static
@@ -173,9 +176,9 @@ export default class Arr {
       : Arr.withoutIndex(array, item);
   }
 
-/** Новый массив без одного элемента @static
+/** Новый массив без одного элемента по индексу @static
   * @param {array} array исходный массив
-  * @param {number} index исключаемый элемент
+  * @param {number} index индекс исключаемого элемента
   * @return {array} массив без элемента с индексом index
   */
   static withoutIndex(array, index) {
