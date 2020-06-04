@@ -1,9 +1,13 @@
 {
   "name": "javascript-std-lib",
-  "version": "1.15.5",
+  "version": "1.15.6",
   "type": "module",
   "description": "Популярные операции над стандартными типами данных",
-  "main": "index.js",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./": "./library/"
+  },
   "scripts": {},
   "repository": {
     "type": "git",
