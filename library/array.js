@@ -239,4 +239,14 @@ export default class Arr {
     });
     return Object.entries(temp);
   }
+
+/** Массив, получаемый из исходного, вставкой разделителя между всеми элементами / intersperse
+  * @sample Arr.intersperse([1,2,3], 0) -> [1,0,2,0,3]
+  */
+  static intersperse(array, separator) {
+    if (array.length === 0) return [];
+    return array
+      .slice(1)
+      .reduce((result, x) => result.concat([separator, x]), [array[0]]);
+  }
 }
