@@ -186,3 +186,11 @@
       return Object.keys(object).length === 0;
     }
   }
+
+// function objectDeepKeys(obj) {
+//   return Object
+//     .keys(obj)
+//     .filter(key => obj[key] instanceof Object)
+//     .map(key => objectDeepKeys(obj[key]).map(k => `${key}.${k}`))
+//     .reduce((x, y) => x.concat(y), Object.keys(obj))
+// }
