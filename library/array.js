@@ -241,7 +241,9 @@ export default class Arr {
   }
 
 /** Массив, получаемый из исходного, вставкой разделителя между всеми элементами / intersperse
-  * @sample Arr.intersperse([1,2,3], 0) -> [1,0,2,0,3]
+  * @param {Array} array исходный массив
+  * @return {Array} массив с разделяющими элементами
+  * @example Arr.intersperse([1,2,3], 0) -> [1,0,2,0,3]
   */
   static intersperse(array, separator) {
     if (array.length === 0) return [];

@@ -118,6 +118,28 @@ export default class Num {
       : result;
   }
 
+/** Линейная интерполяция
+  * @param {number} from изначальное значение
+  * @param {number} to конечное значение
+  * @param {number} percent процент
+  * @return {number}
+  */
+  static interpolate(from, to, percent) {
+    return from + (to - from) * percent;
+  }
+
+/** Пропорция от диапазона
+  * @param {number} from изначальное значение
+  * @param {number} to конечное значение
+  * @param {number} percent промежуточное значение в диапазоне [from, to]
+  * @return {number}
+  */
+  static proportion(from, to, percent) {
+    const max = Math.max(from, to);
+    const min = Math.min(from, to);
+    return (percent - min) / (max - min);
+  }
+
 /** Фиксирование числа в диапазоне @static
   * @param {number} value число
   * @param {number} min миниимальное значение
