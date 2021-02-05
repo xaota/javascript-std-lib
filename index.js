@@ -5,5 +5,6 @@ export {default as Obj}      from './library/object.js';
 export {default as Fn}       from './library/functions.js';
 export {default as Moment}   from './library/moment.js';
 export {default as Deferred} from './library/deferred.js'
+export {default as Emoji}    from './library/emoji.js';
 
 export {default as uuid}   from './library/uuid.js';

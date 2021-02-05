@@ -99,9 +99,12 @@
     * @return {array} список названий методов {...string}
     */
     static methods(object) {
-      return Object
-        .getOwnPropertyNames(Object.getPrototypeOf(object))
-        .filter(m => m !== 'constructor');
+      let methods = new Set();
+      while (object = Reflect.getPrototypeOf(object)) {
+        let keys = Reflect.ownKeys(object)
+        keys.forEach((k) => methods.add(k));
+      }
+      return Array.from(methods);
     }
 
   /** Создаёт в объекте ключ-массив (object[key] = [..., value]) / arrays @static

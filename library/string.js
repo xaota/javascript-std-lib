@@ -72,6 +72,7 @@
     }
 
   /** Возврат всех вхождений в строку
+    * @deprecated
     * @param {string} input строка для проверки
     * @param {RegExp} regexp выражение для поиска вхождений
     * @return {object} {input: string, matches: array[{match, index}]}
@@ -91,6 +92,30 @@
         input,
         matches
       };
+    }
+
+  /** RLE сжатие
+    * @description aaaabbbccd -> a4b3c2d
+    * @param {string} string исходная строка
+    * @return {string} сжатая строка
+    * @author @DPOHVAR
+    */
+    static rleEncode(string) {
+      const regexp = /(?<=(.))\1+/g;
+      const encode = s => s.length + 1;
+      return string.replace(regexp, encode);
+    }
+
+  /** RLE декодирование
+    * @description a4b3c2d -> aaaabbbccd
+    * @param {string} string сжатая строка
+    * @return {string} исходная строка
+    * @author @DPOHVAR
+    */
+    rleDecode(string) {
+      const regexp = /(?<=(\D))\d+/g;
+      const decode = (n, g) => g.repeat(n - 1);
+      return string.replace(regexp, decode);
     }
 
   /** Отформатированная строка согласно заданному шаблону @static
