@@ -4,7 +4,7 @@ export default class Emoji {
    * @return {string} emoji флага страны
    */
   static flag(countryCode) {
-    const zero = "a".charCodeAt(0);
+    const zero = 'a'.charCodeAt(0);
     const base = 0x1f1e6; // emoji "A"
     return countryCode
       .toLowerCase()

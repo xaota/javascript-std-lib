@@ -38,7 +38,7 @@
     * @return {string} форма числительного в зависимости от значения количества
     */
     static pluralizeRU(count, one, two, five) {
-      const n = Math.abs(count) % 100, n1 = n % 10;
+      const n = Math.abs(count) % 100; const n1 = n % 10;
       if ((n > 20 || n < 10) && n1 > 1 && n1 < 5) return two;
       if (n !== 11 && n1 === 1) return one;
       return five;
@@ -79,13 +79,13 @@
     */
     static matchAll(input, regexp) {
       const matches = [];
-      let match, index, last = 0;
+      let match; let index; let last = 0;
       while (true) {
         match = input.substr(last).match(regexp);
         if (!match) break;
         index = match.index + last;
         match = match[0];
-        matches.push({match, index});
+        matches.push({ match, index });
         last = index + match.length;
       }
       return {
@@ -175,7 +175,7 @@
             case 'x':
             case 'X':
               val = parseInt(args[i]).toString(base || 16);
-              if (p4 == 'X') val = val.toUpperCase();
+              if (p4 === 'X') val = val.toUpperCase();
               break;
             case 'u':
             case 'd':
@@ -183,9 +183,9 @@
               break;
           }
 
-          val = typeof val == 'object' ? JSON.stringify(val) : val.toString(base);
+          val = typeof val === 'object' ? JSON.stringify(val) : val.toString(base);
           const sz = parseInt(p1);
-          const ch = p1 && p1[0] == '0' ? '0' : ' ';
+          const ch = p1 && p1[0] === '0' ? '0' : ' ';
 
           while (val.length < sz) val = p0 ? val + ch : ch + val;
           return val

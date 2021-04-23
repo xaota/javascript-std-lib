@@ -10,9 +10,8 @@ export default class Num {
   * @param {number} max верхняя граница промежутка
   * @return {number} случайное число
   */
-  static rand(min, max) {
-    if (min == undefined) return Num.rand(2) == 1;
-    if (max == undefined) return min > 0 ? Num.rand(0, min) : Num.rand(min, 0);
+  static rand(min = Infinity, max) {
+    if (max === undefined) return min > 0 ? Num.rand(0, min) : Num.rand(min, 0);
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
@@ -106,7 +105,7 @@ export default class Num {
   */
   static mode(array = []) {
     const uniq = {};
-    Arr.uniq(array).forEach(e => uniq[e] = 0);
+    Arr.uniq(array).forEach(e => { uniq[e] = 0; });
     array.forEach(e => ++uniq[e]);
     const max = Math.max(...Object.values(uniq));
     const result = [];

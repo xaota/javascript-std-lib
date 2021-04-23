@@ -101,7 +101,7 @@
     */
     static getDaysList(start, finish) {
       const length = Moment.getDaysCount(start, finish);
-      return Array.from({length}, (_, index) => ({from: Moment.dateOffset(start, index), to: Moment.dateOffset(start, index + 1)}));
+      return Array.from({ length }, (_, index) => ({ from: Moment.dateOffset(start, index), to: Moment.dateOffset(start, index + 1) }));
     }
 
   /** Название дня недели по номеру / dayOfWeek @static

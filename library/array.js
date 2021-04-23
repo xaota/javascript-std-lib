@@ -150,7 +150,7 @@ export default class Arr {
   * @return {Array} итоговый массив
   */
   static fill(length, value) {
-    return Array.from({length}, typeof value === "function" ? value : (_, i) => value);
+    return Array.from({ length }, typeof value === 'function' ? value : (_, i) => value);
   }
 
 /** Итерация по диапазону / range @static @generator
@@ -159,8 +159,8 @@ export default class Arr {
   * @param {number} [step=1] шаг
   * @yield {number} текущее значение интерации
   */
-  static *range(from, to, step = 1){
-    for (let val = from; val < to; val += step){
+  static * range(from, to, step = 1) {
+    for (let val = from; val < to; val += step) {
       yield val;
     }
   }
@@ -171,7 +171,8 @@ export default class Arr {
   * @return {array} массив без первого вхождения item
   */
   static without(array, item) {
-    return (item = array.indexOf(item), item === -1)
+    const temp = array.indexOf(item);
+    return temp === -1
       ? array.slice()
       : Arr.withoutIndex(array, item);
   }

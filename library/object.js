@@ -99,9 +99,9 @@
     * @return {array} список названий методов {...string}
     */
     static methods(object) {
-      let methods = new Set();
+      const methods = new Set();
       while (object = Reflect.getPrototypeOf(object)) {
-        let keys = Reflect.ownKeys(object)
+        const keys = Reflect.ownKeys(object)
         keys.forEach((k) => methods.add(k));
       }
       return Array.from(methods);
@@ -138,7 +138,7 @@
       )(_ => Object.create(null))(source);
       hash.set(source, result);
       if (source instanceof Map) Array.from(source, ([key, val]) => result.set(key, Obj.deep(val, hash)));
-      return Object.assign(result, ...Object.keys(source).map(key => ({[key]: Obj.deep(source[key], hash)})));
+      return Object.assign(result, ...Object.keys(source).map(key => ({ [key]: Obj.deep(source[key], hash) })));
     }
 
   /** Глубокое слияние объектов в один @static @immutable
@@ -194,39 +194,34 @@
       if (a === b) return true;
       // var envHasBigInt64Array = typeof BigInt64Array !== 'undefined';
 
-      if (a && b && typeof a == 'object' && typeof b == 'object') {
+      if (a && b && typeof a === 'object' && typeof b === 'object') {
         if (a.constructor !== b.constructor) return false;
 
-        var length, i, keys;
+        let length, i;
         if (Array.isArray(a)) {
           length = a.length;
-          if (length != b.length) return false;
-          for (i = length; i-- !== 0;)
-            if (!Obj.equal(a[i], b[i])) return false;
+          if (length !== b.length) return false;
+          for (i = length; i-- !== 0;) { if (!Obj.equal(a[i], b[i])) return false; }
           return true;
         }
 
         if ((a instanceof Map) && (b instanceof Map)) {
           if (a.size !== b.size) return false;
-          for (i of a.entries())
-            if (!b.has(i[0])) return false;
-          for (i of a.entries())
-            if (!Obj.equal(i[1], b.get(i[0]))) return false;
+          for (i of a.entries()) { if (!b.has(i[0])) return false; }
+          for (i of a.entries()) { if (!Obj.equal(i[1], b.get(i[0]))) return false; }
           return true;
         }
 
         if ((a instanceof Set) && (b instanceof Set)) {
           if (a.size !== b.size) return false;
-          for (i of a.entries())
-            if (!b.has(i[0])) return false;
+          for (i of a.entries()) { if (!b.has(i[0])) return false; }
           return true;
         }
 
         if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
           length = a.length;
-          if (length != b.length) return false;
-          for (i = length; i-- !== 0;)
-            if (a[i] !== b[i]) return false;
+          if (length !== b.length) return false;
+          for (i = length; i-- !== 0;) { if (a[i] !== b[i]) return false; }
           return true;
         }
 
@@ -234,23 +229,21 @@
         if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
         if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
 
-        keys = Object.keys(a);
+        const keys = Object.keys(a);
         length = keys.length;
         if (length !== Object.keys(b).length) return false;
 
-        for (i = length; i-- !== 0;)
-          if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
+        for (i = length; i-- !== 0;) { if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false; }
 
         for (i = length; i-- !== 0;) {
-          var key = keys[i];
+          const key = keys[i];
           if (!Obj.equal(a[key], b[key])) return false;
         }
 
         return true;
       }
 
-      // true if both NaN, false otherwise
-      return a!==a && b!==b;
+      return Number.isNaN(a) && Number.isNaN(b);
     }
   }
 
