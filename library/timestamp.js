@@ -8,21 +8,29 @@
   };
 
 /** @section @exports */
-/** {Momemt} работа с датой и временем @class
+/** {Timestamp} работа с датой и временем @class
   *
   */
-  export default class Moment {
+  export default class Timestamp {
   /** Является ли объект датой-временем / isDate @static @is
     * @param {any} value проверяемый объект
     * @return {boolean} true, если {any} === {Date}
     */
-    static isDate(value) {
+    static is(value) {
       return value instanceof Date;
+    }
+
+  /** Переводит объект даты-времени в короткую строку / short
+    * @param {Date} timestamp дата-время
+    * @return {string} короткое строковое представление временной метки
+    */
+    static short(timestamp) {
+      return new Date(timestamp).toISOString().replace(/:\d{2}\.\d{3}Z/, '').replace('T', ' ').replace(/^\d{4}-/, '').replace('-', '.');
     }
 
   /** Получение времени из числа милисекунд / time @static
     * @param {number} time число милисекунд
-    * @return {string} строка вида mm:ss.msec
+    * @return {string} строка вида hh:mm:ss.msec
     */
     static time(time) {
       time = Math.round(time); // !
@@ -33,7 +41,7 @@
       return [Num.pad(hrs), Num.pad(min), Num.pad(sec)].join(':') + '.' + Num.pad(msec, 3);
     }
 
-  /** Вывод даты / времени из исла милисекунд / stamp @static
+  /** Вывод даты / времени из числа милисекунд / stamp @static
     * @param {number} time число милисекунд
     * @return {string} строка вида yyyy-mm-dd hh:mm:ss.msec
     */
@@ -78,7 +86,7 @@
     * @return {Date} итоговая дата
     */
     static dateOffset(start, offset) {
-      if (!Moment.isDate(start)) start = new Date(start);
+      if (!Timestamp.is(start)) start = new Date(start);
       offset *= 24 * 60 * 60 * 1000;
       return new Date(start.valueOf() + offset);
     }
@@ -89,8 +97,8 @@
     * @return {number} количество дней finish - start
     */
     static getDaysCount(start, finish) {
-      if (!Moment.isDate(start))  start  = new Date(start);
-      if (!Moment.isDate(finish)) finish = new Date(finish);
+      if (!Timestamp.is(start))  start  = new Date(start);
+      if (!Timestamp.is(finish)) finish = new Date(finish);
       return (finish.valueOf() - start.valueOf()) / 1000 / 24 / 60 / 60;
     }
 
@@ -100,8 +108,8 @@
     * @return {array} [...{from: Date, to: Date}] дни [start, finish)
     */
     static getDaysList(start, finish) {
-      const length = Moment.getDaysCount(start, finish);
-      return Array.from({ length }, (_, index) => ({ from: Moment.dateOffset(start, index), to: Moment.dateOffset(start, index + 1) }));
+      const length = Timestamp.getDaysCount(start, finish);
+      return Array.from({ length }, (_, index) => ({ from: Timestamp.dateOffset(start, index), to: Timestamp.dateOffset(start, index + 1) }));
     }
 
   /** Название дня недели по номеру / dayOfWeek @static
@@ -120,4 +128,31 @@
     static week(language = 'russian') {
       return week[language];
     }
+  }
+
+/*
+ * JavaScript Pretty Date
+ * Copyright (c) 2011 John Resig (ejohn.org)
+ * Licensed under the MIT and GPL licenses.
+ */
+
+/** Takes an ISO time and returns a string representing how long ago the date represents.
+ */
+  export function prettyDate(time) {
+    const date = new Date((time || '').replace(/-/g, '/').replace(/[TZ]/g, ' '));
+      const diff = (((new Date()).getTime() - date.getTime()) / 1000);
+      const dayDiff = Math.floor(diff / 86400);
+
+    if (isNaN(dayDiff) || dayDiff < 0 || dayDiff >= 31) return;
+
+    return dayDiff === 0 && (
+      diff < 60 && 'just now' ||
+      diff < 120 && '1 minute ago' ||
+      diff < 3600 && Math.floor(diff / 60) + ' minutes ago' ||
+      diff < 7200 && '1 hour ago' ||
+      diff < 86400 && Math.floor(diff / 3600) + ' hours ago'
+    ) ||
+      dayDiff === 1 && 'Yesterday' ||
+      dayDiff < 7 && dayDiff + ' days ago' ||
+      dayDiff < 31 && Math.ceil(dayDiff / 7) + ' weeks ago';
   }
