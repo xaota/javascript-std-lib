@@ -8,16 +8,17 @@
     * @param {object} object исходный объект
     * @param {string} path путь
     * @param {string} split разделитель вложенности ключей в пути
+    * @param {any} defaultValue значение по-умолчанию
     * @return {any} значение
     */
-    static get(object, path, split = '/') {
+    static get(object, path, defaultValue = undefined, split = '/') {
       if (typeof path === 'string') path = path.split(split).filter(e => e);
       let root = object;
       for (const chunk of path) {
         root = root[chunk];
         if (!root) break;
       }
-      return root;
+      return root || defaultValue;
     }
 
   /** Установка значения по пути в объекте @static
@@ -35,7 +36,8 @@
         if (!(chunk in root)) root[chunk] = {};
         root = root[chunk];
       }
-      return root[path[path.length - 1]] = value;
+      root[path[path.length - 1]] = value;
+      return value;
     }
 
   /** Список всех путей до значений в объекте @static @reqursive

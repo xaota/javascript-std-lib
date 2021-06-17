@@ -69,7 +69,7 @@
     }
 
   /** Задержка выполнения / sleep @async @sattic
-    * @param {number} duration продолжительность задержки
+    * @param {number} duration продолжительность задержки (в милисекундах)
     * @return {Promise} await до возврата управления
     */
     static sleep(duration) {
