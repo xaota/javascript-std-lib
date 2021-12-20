@@ -1,6 +1,6 @@
 {
   "name": "javascript-std-lib",
-  "version": "1.18.9",
+  "version": "1.18.11",
   "type": "module",
   "description": "Популярные операции над стандартными типами данных",
   "main": "./index.js",
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "lint": "./node_modules/eslint/bin/eslint.js index.js library",
     "clear": "rm -rf node_modules package-lock.json"
   },
   "repository": {
@@ -37,11 +37,6 @@
   "homepage": "https://github.com/xaota/javascript-std-lib#readme",
   "devDependencies": {
     "@types/node": "^14.14.41",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.5.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1"
+    "eslint": "^8.5.0"
   }
 }
