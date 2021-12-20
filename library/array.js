@@ -36,7 +36,7 @@ export default class Arr {
   }
 
 /** Обмен местами двух элементов массива @static @void @mutable
-  * @param {array} array массив
+  * @param {Iterable} array массив
   * @param {number} a индекс первого элемента
   * @param {number} b индекс второго элемента
   */

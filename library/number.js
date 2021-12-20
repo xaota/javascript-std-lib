@@ -146,6 +146,9 @@ export default class Num {
   * @return {number} число из диапазона
   */
   static clamp(value, min = 0, max = 1) {
-    return Math.min(Math.max(min, value), max);
+    // return Math.min(Math.max(min, value), max);
+    if (value < min) return min;
+    if (value > max) return max;
+    return value;
   }
 }
